@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 04, 2020 at 05:25 PM
--- Server version: 10.4.16-MariaDB
--- PHP Version: 7.4.12
+-- Host: 127.0.0.1
+-- Generation Time: Dec 04, 2020 at 08:27 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,17 @@ SET time_zone = "+00:00";
 --
 -- Database: `users`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `answers`
+--
+
+CREATE TABLE `answers` (
+  `Answer` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `id` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -70,6 +81,25 @@ INSERT INTO `event` (`event_id`, `event_name`, `council_name`, `event_date`, `ev
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `events_and_fests`
+--
+
+CREATE TABLE `events_and_fests` (
+  `events` varchar(200) CHARACTER SET latin1 NOT NULL,
+  `id` int(3) NOT NULL,
+  `about` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `events_and_fests`
+--
+
+INSERT INTO `events_and_fests` (`events`, `id`, `about`) VALUES
+('Prabhanjan', 1, 'Sports');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `faq`
 --
 
@@ -111,9 +141,89 @@ INSERT INTO `notice` (`notice_id`, `title`, `date`, `npdf`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `notices`
+--
+
+CREATE TABLE `notices` (
+  `heading` varchar(1000) NOT NULL,
+  `notice` varchar(1000) CHARACTER SET latin1 NOT NULL,
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `notices`
+--
+
+INSERT INTO `notices` (`heading`, `notice`, `id`) VALUES
+('Announcement of exam date', 'Coming soon', 1),
+('Webinar ', 'To be held soon', 2),
+('4/02/2021', 'exams', 3),
+('4/02/2021', 'exams', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `questions`
+--
+
+CREATE TABLE `questions` (
+  `ques` varchar(1200) CHARACTER SET latin1 NOT NULL,
+  `id` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `questions`
+--
+
+INSERT INTO `questions` (`ques`, `id`) VALUES
+('Where is BIET located?', 1),
+('Is it accredited by NBA?', 2),
+('ertyuioo gfrghgfddfghgfd asdfghjk zxcvbnm qwertyui qwertyuiop zxcvbnm asdfghjkl qwertyuiop ertyuioo gfrghgfddfghgfd asdfghjk zxcvbnm qwertyui qwertyuiop zxcvbnm asdfghjkl qwertyuiop ertyuioo gfrghgfddfghgfd asdfghjk zxcvbnm qwertyui qwertyuiop zxcvbnm asdfghjkl qwertyuiop ertyuioo gfrghgfddfghgfd asdfghjk zxcvbnm qwertyui qwertyuiop zxcvbnm asdfghjkl qwertyuiop', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `q_and_a`
+--
+
+CREATE TABLE `q_and_a` (
+  `id` int(5) NOT NULL,
+  `question` varchar(2000) NOT NULL,
+  `ques_approved` tinyint(1) DEFAULT NULL,
+  `ques_answered` tinyint(1) DEFAULT NULL,
+  `answer` varchar(10000) NOT NULL,
+  `ans_approved` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `q_and_a`
+--
+
+INSERT INTO `q_and_a` (`id`, `question`, `ques_approved`, `ques_answered`, `answer`, `ans_approved`) VALUES
+(1, 'Who handles data in BIET?', 1, NULL, 'Not a particular person .It changes every year.', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user_details`
 --
 
+CREATE TABLE `user_details` (
+  `adminname` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `email` varchar(55) CHARACTER SET latin1 NOT NULL,
+  `password` varchar(30) CHARACTER SET latin1 NOT NULL,
+  `id` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_details`
+--
+
+INSERT INTO `user_details` (`adminname`, `email`, `password`, `id`) VALUES
+('Rati', 'guptarati2001@gmail.com', '1234', 1),
+('Mahima Rai', 'raimahima@gmail.com', '3456', 4),
+('Kshitij Sharma', 'riyashukla0907@gmail.com', '3456', 5),
+('Mahima Rai', 'raimuskan101@gmail.com', 'mahi', 6);
 
 --
 -- Indexes for dumped tables
@@ -132,6 +242,12 @@ ALTER TABLE `event`
   ADD PRIMARY KEY (`event_id`);
 
 --
+-- Indexes for table `events_and_fests`
+--
+ALTER TABLE `events_and_fests`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `faq`
 --
 ALTER TABLE `faq`
@@ -144,9 +260,28 @@ ALTER TABLE `notice`
   ADD PRIMARY KEY (`notice_id`);
 
 --
+-- Indexes for table `notices`
+--
+ALTER TABLE `notices`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `questions`
+--
+ALTER TABLE `questions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `q_and_a`
+--
+ALTER TABLE `q_and_a`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user_details`
 --
-
+ALTER TABLE `user_details`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -165,6 +300,12 @@ ALTER TABLE `event`
   MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `events_and_fests`
+--
+ALTER TABLE `events_and_fests`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `faq`
 --
 ALTER TABLE `faq`
@@ -177,8 +318,29 @@ ALTER TABLE `notice`
   MODIFY `notice_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `notices`
+--
+ALTER TABLE `notices`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `questions`
+--
+ALTER TABLE `questions`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `q_and_a`
+--
+ALTER TABLE `q_and_a`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `user_details`
 --
+ALTER TABLE `user_details`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
