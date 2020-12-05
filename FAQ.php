@@ -145,7 +145,7 @@
                 <div id="collapse7" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="collapse-item" href="#">View </a>
+                        <a class="collapse-item" href="view_FAQ.php">View </a>
                         <a class="collapse-item" href="add_faq.php">Add </a>
                     </div>
                 </div>
@@ -166,19 +166,7 @@
             </li>
 			 <!-- Nav Item - Pages Collapse Menu -->
            
- <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse7" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>FAQ</span>
-                </a>
-                <div id="collapse7" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-
-                        <a class="collapse-item" href="events.php">View </a>
-                        <a class="collapse-item" href="add_faq.php">Add </a>
-                    </div>
-                </div>
-            </li>
+ 
 
 
 
@@ -258,7 +246,7 @@ die();
 mysqli_select_db($con, "users");
 if (isset($_GET["page"])) { $page = $_GET["page"]; } else { $page=1; };
 $start_from = ($page-1) * 20;
-$sql = "select * from user_details ORDER BY id DESC LIMIT $start_from, 20";
+$sql = "select * from faq ORDER BY id DESC LIMIT $start_from, 20";
 $rs_result = mysqli_query ($con,$sql);
 ?>
        <table class="table">

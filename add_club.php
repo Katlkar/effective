@@ -86,7 +86,7 @@ echo "<script type='text/javascript'>alert('New Club has been successfully added
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="admin_index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -159,16 +159,16 @@ echo "<script type='text/javascript'>alert('New Club has been successfully added
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse7"
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse8"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Events and Fests</span>
-                    <div id="collapse7" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <span>FAQ</span>
+                    <div id="collapse8" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 </a>
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="collapse-item" href="events.php">View </a>
-                        <a class="collapse-item" href="add_event.php">Add </a>
+                        <a class="collapse-item" href="view_FAQ">View </a>
+                        <a class="collapse-item" href="add_faq.php">Add </a>
                     </div>
                 </div>
             </li>

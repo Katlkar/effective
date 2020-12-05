@@ -139,13 +139,7 @@
             </li>
           
 
-			<!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="question.php"  data-target="#collapse4"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Question Panel</span>
-                </a>
+			
 
 
 
@@ -153,28 +147,17 @@
 
             </li>
 			 <!-- Nav Item - Pages Collapse Menu -->
-             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Clubs and councils</span>
-                </a>
-                <div id="collapse3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-
-                        <a class="collapse-item" href="clubs.php">View </a>
-                        <a class="collapse-item" href="add_clubs.php">Add </a>
-                    </div>
-                </div>
-            </li>
+            
+            
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse7" aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse8" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>FAQ</span>
                 </a>
-                <div id="collapse7" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapse8" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="collapse-item" href="events.php">View </a>
+                        <a class="collapse-item" href="view_FAQ.php">View </a>
                         <a class="collapse-item" href="add_faq.php">Add </a>
                     </div>
                 </div>
@@ -266,18 +249,21 @@ die();
 mysqli_select_db($con, "users");
 if (isset($_GET["page"])) { $page = $_GET["page"]; } else { $page=1; };
 $start_from = ($page-1) * 20;
-$sql = "select * from clubs_and_councils ORDER BY id DESC LIMIT $start_from, 20";
+$sql = "select * from club ORDER BY id DESC LIMIT $start_from, 20";
 $rs_result = mysqli_query ($con,$sql);
 ?>
        <table class="table">
 
 <thead>
                  <tr>
-<th width="20%">Clubs and Councils</th>
+<th width="20%">Clubs </th>
+<th width="20">Logo</th>
+<th width="20">Info</th>
+<th width="20">link</th>
 
 
 
-<th colspan=2 width="18%">Action (Delete)</th>
+<th  width="20%">Action (Delete)</th>
                  </tr>
              </thead>
 
@@ -287,7 +273,10 @@ while ($row = mysqli_fetch_assoc($rs_result)) {
 
 <tbody>
                  <tr>
-                     <td> <?php echo $row["clubs"]; ?> </td>
+                     <td> <?php echo $row["club_name"]; ?> </td>
+                     <td> <?php echo $row["club_logo"]; ?> </td>
+                     <td> <?php echo $row["club_info"]; ?> </td>
+                     <td> <?php echo $row["club_link"]; ?> </td>
 
 
                     <td><a href='userdelete.php?key1=<?php echo $row["id"]; ?>'>Delete</a>

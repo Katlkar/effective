@@ -148,7 +148,19 @@ if (isset($_POST['username'])) {
                     </div>
                 </div>
             </li>
-			
+			<li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse8" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>FAQ</span>
+                </a>
+                <div id="collapse8" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item" href="view_FAQ.php">View </a>
+                        <a class="collapse-item" href="add_faq.php">Add </a>
+                    </div>
+                </div>
+            </li>
 			
 			<!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -164,17 +176,7 @@ if (isset($_POST['username'])) {
                 
             </li>
 			 <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="buttons.html"  data-target="#collapse5"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Answer pannel</span>
-                </a>
-                
-               
-            </li>
-			
-
+           
             
             
 
@@ -261,7 +263,7 @@ if (isset($_POST['username'])) {
                                 <h1 class="h4 text-gray-900 mb-4">Register as Admin</h1>
                             </div>
 
-                            <form class="user" method="POST" action="#">
+                            <form class="user" method="POST" action="admin_index.php">
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Full name" required>
                                 </div>
@@ -276,7 +278,7 @@ if (isset($_POST['username'])) {
                                         <input type="password" class="form-control form-control-user" id="password" placeholder="Confirm Password" name="confirm_password" required>
                                     </div>
                                 </div>
-                                <button href="add_admin.php" class="btn btn-primary btn-user btn-block" name="submit" type="submit">
+                                <button href="#" class="btn btn-primary btn-user btn-block" name="submit" type="submit">
                                     Register</button>
                                 <hr>
 

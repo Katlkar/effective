@@ -5,19 +5,21 @@ session_start();
 <html lang="en" dir="ltr">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Welcome to Campus Cauldron!</title>
-  <!-- SPACE FOR FONTS -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Montserrat:wght@800&family=Raleway:ital,wght@1,300&family=Roboto+Slab:wght@600&family=Ubuntu:ital,wght@1,300&display=swap" rel="stylesheet">
-  <!-- FONT AWESOME LINKS -->
-  <script src="https://kit.fontawesome.com/959552e028.js" crossorigin="anonymous"></script>
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <!-- STYLESHEETS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <link rel="stylesheet" href="CSS/styles.css">
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <title>Campus Cauldron</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
 </head>
 
 
@@ -118,11 +120,23 @@ session_start();
                 </div>
             </div>
         </li>
-  
+        <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse8" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>FAQ</span>
+                </a>
+                <div id="collapse8" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item" href="view_FAQ">View </a>
+                        <a class="collapse-item" href="add_faq.php">Add </a>
+                    </div>
+                </div>
+            </li>
   
   <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="question.html"  data-target="#collapse4"
+            <a class="nav-link collapsed" href="ques_ans.php"  data-target="#collapse4"
                 aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Question Panel</span>
@@ -134,16 +148,7 @@ session_start();
             
         </li>
    <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="buttons.html"  data-target="#collapse5"
-                aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Answer pannel</span>
-            </a>
-            
-           
-        </li>
-  
+       
 
         
         
@@ -224,10 +229,10 @@ $rs_result = mysqli_query ($con,$sql);
                                     
 <thead>
                                         <tr>
-                                            <th width="30">Question</th>
+                                            <th width="80">Question</th>
                                             <th width="20%">Action(Question)</th>
-                                            <th width="30%">Answer     </th>
-                                            <th width="20%">Action(Answer)</th>
+                                        
+                                        
                                             
 										
                                         </tr>
@@ -242,10 +247,10 @@ while ($row = mysqli_fetch_assoc($rs_result)) {
                                             <td> <?php ;
                                             echo $row["question"]; ?> </td>
                                              <td><a class="btn btn-outline-danger" href='ques_delete.php?key1=<?php echo $row["id"]; ?>'>Delete</a>
-                                             <a  href='ques_approve.php?key=<?php echo $row["id"]; ?>'>Approve</a>
-                    </td>
-                    
-
+                                             <a class="btn btn-outline-success" href='ques_approve.php?key=<?php echo $row["id"]; ?>'>Approve</a>
+                                            </td>
+                                        </tr>
+                                     <tr>
 										<td><?php echo $row["answer"]; ?></td>
                                             <td><a class="btn btn-outline-danger" href='ques_delete.php?key1=<?php echo $row["id"]; ?>'>Delete</a>
                       <a class="btn btn-outline-success" href='.php?key1=<?php echo $row["id"]; ?>'>Approve</a></td>

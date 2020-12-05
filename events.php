@@ -138,15 +138,15 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse7"
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse8"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>FAQ</span>
                 </a>
-                <div id="collapse7" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapse8" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="collapse-item" href="#">View </a>
+                        <a class="collapse-item" href="view_FAQ">View </a>
                         <a class="collapse-item" href="add_faq.php">Add </a>
                     </div>
                 </div>
@@ -246,18 +246,22 @@ die();
 mysqli_select_db($con, "users");
 if (isset($_GET["page"])) { $page = $_GET["page"]; } else { $page=1; };
 $start_from = ($page-1) * 20;
-$sql = "select * from events_and_fests ORDER BY id DESC LIMIT $start_from, 20";
+$sql = "select * from event ORDER BY id DESC LIMIT $start_from, 20";
 $rs_result = mysqli_query ($con,$sql);
 ?>
        <table class="table">
 
 <thead>
                  <tr>
-<th width="20%">Events and Fest</th>
+<th width="10">Events </th>
+<th width="20%">Council</th>
+<th width="10">Event's Date</th>
+<th width="20%">Event's link</th>
+<th width="20%">Event's info</th>
 
 
 
-<th colspan=2 width="18%">Action (Delete)</th>
+<th width="20%">Action (Delete)</th>
                  </tr>
              </thead>
 
@@ -267,7 +271,11 @@ while ($row = mysqli_fetch_assoc($rs_result)) {
 
 <tbody>
                  <tr>
-                     <td> <?php echo $row["events"]; ?> </td>
+                     <td> <?php echo $row["event_name"]; ?> </td>
+                     <td> <?php echo $row["council_name"]; ?> </td>
+                     <td> <?php echo $row["event_date"]; ?> </td>
+                     <td> <?php echo $row["event_link"]; ?> </td>
+                     <td> <?php echo $row["event_info"]; ?> </td>
 
 
                     <td><a href='userdelete.php?key1=<?php echo $row["id"]; ?>'>Delete</a>
