@@ -1,43 +1,34 @@
 <?php
-session_start();
-$con = mysqli_connect("localhost", "root", "");
 
-if (!$con) {
-  die();
-}
-
-mysqli_select_db($con, "users");
-?>
-
-<?php
-
+include 'conn.php';
 if (isset($_POST['username'])) {
   $username = $_POST['username'];
   $phone = $_POST['phone'];
   $email = $_POST['email'];
   $password = $_POST['password'];
-   
+
   if (!empty($username) || !empty($email) || !empty($phone) || !empty($password)) {
     if (isset($_POST['password']) && $_POST['password'] !== $_POST['confirm_password']) {
       echo "<script type='text/javascript'>alert('The two passwords do not match'); window.location.href = 'sign-up.php';</script>";
-    } 
-    else{
-      $query = @mysqli_query($con, "SELECT * FROM user_details WHERE email='$email' LIMIT 1;");
+    } else {
+      $query = @mysqli_query($con, "SELECT * FROM users WHERE email='$email' LIMIT 1;");
       if (mysqli_num_rows($query) > 0) {
         $row = mysqli_fetch_assoc($query);
         if ($email == isset($row['email'])) {
           echo "<script type='text/javascript'>alert('Email already exists');</script>";
         }
       } else {
-        $ins = mysqli_query($con, "insert into user_details(username,email,phone,password) values('$username','$email','$phone','$password')");
+        $ins = mysqli_query($con, "insert into users(username,email,phone,password) values('$username','$email','$phone','$password')");
         if ($ins > 0) {
+          @session_start();
+          $_SESSION['email'] = $email;
           echo "<script type='text/javascript'>alert('You are successfully registered.'); window.location.href = 'index.php';</script>";
         } else {
           echo "An error in database query";
         }
       }
-  } 
-  }else {
+    }
+  } else {
     echo "All fields are required";
   }
 }
@@ -51,74 +42,8 @@ if (isset($_POST['username'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Welcome to Campus Cauldron!</title>
   <!-- SPACE FOR FONTS -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Montserrat:wght@800&family=Raleway:ital,wght@1,300&family=Roboto+Slab:wght@600&family=Ubuntu:ital,wght@1,300&display=swap" rel="stylesheet">
-  <!-- FONT AWESOME LINKS -->
-  <script src="https://kit.fontawesome.com/959552e028.js" crossorigin="anonymous"></script>
+  <?php include 'include/navbar.php' ?>
 
-  <!-- STYLESHEETS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <link rel="stylesheet" href="CSS/styles.css">
-</head>
-
-<!-- FOR EVENTS AND FESTS -->
-<style>
-  .card .form-container button {
-    background-color: #31326f;
-    color: white;
-    border: none;
-    border-radius: 4px;
-  }
-
-  .card .form-container button:hover {
-    background-color: #414292;
-  }
-</style>
-
-<body style="background-image: url('images/img11.jpg');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;">
-  
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark my-bg">
-    <a class="navbar-brand" href="#">Campus Cauldron</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="index.php">Home</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Links
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#after-intro">Notices</a>
-            <a class="dropdown-item" href="#after-notice">FAQs</a>
-            <a class="dropdown-item" href="#after-questions">Gallery</a>
-            <a class="dropdown-item" href="#after-gallery">Clubs and Cells</a>
-            <a class="dropdown-item" href="#after-clubs">Events and Fests</a>
-            <a class="dropdown-item" href="#after-fests">College Map</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="ask.html">Ask</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact Us</a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn my-btn my-2 my-sm-0" type="submit"><i class="search-icon fas fa-search"></i></button>
-      </form>
     </div>
   </nav>
   <br><br>
@@ -193,16 +118,16 @@ if (isset($_POST['username'])) {
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
             <h6 class="text-uppercase mb-4 font-weight-bold">Links</h6>
             <p>
-              <a class="footer-link" href="#after-intro">Notice</a>
+              <a class="footer-link" href="index.php#after-intro">Notice</a>
             </p>
             <p>
-              <a class="footer-link" href="#after-questions">Gallery</a>
+              <a class="footer-link" href="index.php#after-questions">Gallery</a>
             </p>
             <p>
-              <a class="footer-link" href="#after-gallery">Clubs and Cells</a>
+              <a class="footer-link" href="index.php#after-gallery">Clubs and Cells</a>
             </p>
             <p>
-              <a class="footer-link" href="#after-clubs">Events and Fests</a>
+              <a class="footer-link" href="index.php#after-clubs">Events and Fests</a>
             </p>
           </div>
           <!-- Grid column -->

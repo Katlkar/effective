@@ -8,8 +8,8 @@ if (!$con) {
   die();
 }
 
-mysqli_select_db($con, "users");
-mysqli_query($con,"delete from event where id = '$mykey1'");
-echo "<script>location.href='events.php'</script>"
+mysqli_select_db($con, "campus_cauldron");
+mysqli_query($con,"delete from event where event_id = '$mykey1'");
+echo "<script>location.href='view_events.php'</script>"
 
 ?> 

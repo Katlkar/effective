@@ -1,12 +1,9 @@
 <?php
- $mykey1=$_REQUEST['key1'];
 
-$con = mysqli_connect("localhost", "root", "");
+$mykey1=$_REQUEST['key1'];
 
-if (!$con) {
-  die();
-}
-
-mysqli_select_db($con, "users");
+include 'conn.php';
 mysqli_query($con,"delete from q_and_a where id = '$mykey1'");
-echo "<script>location.href='question.php'</script>"?>
+echo "<script>location.href='ques_ans.php'</script>"
+
+?> 

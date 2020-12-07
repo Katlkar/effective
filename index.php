@@ -1,5 +1,5 @@
 <?php
-session_start();
+@session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -9,173 +9,11 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Welcome to Campus Cauldron!</title>
   <!-- SPACE FOR FONTS -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Montserrat:wght@800&family=Raleway:ital,wght@1,300&family=Roboto+Slab:wght@600&family=Ubuntu:ital,wght@1,300&display=swap" rel="stylesheet">
-  <!-- FONT AWESOME LINKS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://kit.fontawesome.com/959552e028.js" crossorigin="anonymous"></script>
-  <!-- STYLESHEETS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <link rel="stylesheet" href="CSS/styles.css">
-</head>
+  <?php include 'include/navbar.php' ?>
 
-<!-- FOR EVENTS AND FESTS -->
-<style>
-  #test {
-    margin-top: 3rem;
-    height: 463px;
-    overflow: auto;
-    text-align: justify;
-    border: 3px solid black;
-    padding: 10px;
-  }
 
-  @media (min-width: 768px) {
+      
 
-    .carousel-inner .active,
-    .carousel-inner .active+.carousel-item,
-    .carousel-inner .active+.carousel-item+.carousel-item {
-      display: block;
-    }
-
-    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
-    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left)+.carousel-item,
-    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left)+.carousel-item+.carousel-item {
-      transition: none;
-      margin-right: initial;
-    }
-
-    .carousel-inner .carousel-item-next,
-    .carousel-inner .carousel-item-prev {
-      position: relative;
-      transform: translate3d(0, 0, 0);
-    }
-
-    .carousel-inner .active.carousel-item+.carousel-item+.carousel-item+.carousel-item {
-      position: absolute;
-      top: 0;
-      right: -33.3333%;
-      z-index: -1;
-      display: block;
-      visibility: visible;
-    }
-
-    .active.carousel-item-left+.carousel-item-next.carousel-item-left,
-    .carousel-item-next.carousel-item-left+.carousel-item,
-    .carousel-item-next.carousel-item-left+.carousel-item+.carousel-item,
-    .carousel-item-next.carousel-item-left+.carousel-item+.carousel-item+.carousel-item {
-      position: relative;
-      transform: translate3d(-100%, 0, 0);
-      visibility: visible;
-    }
-
-    .carousel-inner .carousel-item-prev.carousel-item-right {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: -1;
-      display: block;
-      visibility: visible;
-    }
-
-    .active.carousel-item-right+.carousel-item-prev.carousel-item-right,
-    .carousel-item-prev.carousel-item-right+.carousel-item,
-    .carousel-item-prev.carousel-item-right+.carousel-item+.carousel-item,
-    .carousel-item-prev.carousel-item-right+.carousel-item+.carousel-item+.carousel-item {
-      position: relative;
-      transform: translate3d(100%, 0, 0);
-      visibility: visible;
-      display: block;
-      visibility: visible;
-    }
-
-    .my-img:hover {
-      -ms-transform: scale(1.2);
-      /* IE 9 */
-      -webkit-transform: scale(1.2);
-      /* Safari 3-8 */
-      transform: scale(1.2);
-    }
-
-  }
-</style>
-
-<body>
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark my-bg">
-    <a class="navbar-brand" href="#">Campus Cauldron</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Links
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#after-intro">Notices</a>
-            <a class="dropdown-item" href="#after-notice">FAQs</a>
-            <a class="dropdown-item" href="#after-questions">Gallery</a>
-            <a class="dropdown-item" href="#after-gallery">Clubs and Cells</a>
-            <a class="dropdown-item" href="#after-clubs">Events and Fests</a>
-            <a class="dropdown-item" href="#after-fests">College Map</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="ask.php">Ask</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact Us</a>
-        </li>
-      </ul>
-
-      <?php
-      if (!isset($_SESSION['email'])) {
-
-      ?>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="login.php"><i class="fas fa-lock"></i>Admin Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sign-in.php">Sign In</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sign-up.php">Sign Up</a>
-          </li>
-        </ul>
-      <?php } else {
-        $con = mysqli_connect("localhost", "root", "");
-
-        if (!$con) {
-          die();
-        }
-        mysqli_select_db($con, "users");
-        $sql1 = "select * from user_details WHERE email='" . $_SESSION['email'] . "'";
-        $rs_result1 = mysqli_query($con, $sql1);
-        $roww = mysqli_fetch_assoc($rs_result1);
-      ?><ul>
-          <li class="nav-item dropdown dropleft">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-user-circle"></i>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="userprofile.php?id=<?php echo $roww["id"]; ?>">View Profile</a>
-              <a class="dropdown-item" href="logout.php">Logout</a>
-            </div>
-          </li>
-        <?php } ?>
-        </ul>
-    </div>
-  </nav>
 
   <!-- INTRODUCTION -->
   <section id="introduction" class="introduction">
@@ -201,7 +39,7 @@ session_start();
         <div class="col-lg-3">
           <div class="notice-panel">
             <h3 class="notice-head"><i class="icon far fa-calendar-alt"></i>Notices</h3>
-            <marquee height="310" direction="up" scrollamount="3">
+            <marquee height="510" direction="up" scrollamount="3">
               <p><a class="notice-link" href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor <br>Date: 19/03/2020
                   <hr>
                 </a></p>
@@ -238,7 +76,7 @@ session_start();
         </div>
 
         <div class="col-lg-3">
-          <a class="my-links" href="#after-questions">
+          <a class="my-links" href="#after-notice">
             <h3 class="links-head"><i class="icon far fa-image"></i>Gallery</h3>
           </a>
           <a class="my-links" href="#after-gallery">
@@ -248,6 +86,9 @@ session_start();
             <h3 class="links-head"><i class="icon far fa-calendar-times"></i>Events and Fests</h3>
           </a>
           <a class="my-links" href="#after-fests">
+            <h3 class="links-head"><i class="icon fas fa-question"></i>FAQs</h3>
+          </a>
+          <a class="my-links" href="#after-questions">
             <h3 class="links-head"><i class="icon fas fa-map-marked-alt"></i>College Map</h3>
           </a>
 
@@ -259,47 +100,6 @@ session_start();
 
   <hr id="after-notice" class="section-diff" style="width:70%">
 
-  <!-- QUESTIONS -->
-  <section id="Questions">
-    <div class="my-container">
-      <div class="row">
-        <div class="col-lg-3">
-          <div class="my-panel">
-            <strong>
-              <h2 class="question">What is a good place to visit in Jhansi?</h2>
-            </strong>
-            <h4 class="answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h4>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="my-panel">
-            <strong>
-              <h2 class="question">What is a good place to visit in Jhansi?</h2>
-            </strong>
-            <h4 class="answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h4>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="my-panel">
-            <strong>
-              <h2 class="question">What is a good place to visit in Jhansi?</h2>
-            </strong>
-            <h4 class="answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h4>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="my-panel">
-            <strong>
-              <h2 class="question">What is a good place to visit in Jhansi?</h2>
-            </strong>
-            <h4 class="answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h4>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr id="after-questions" class="section-diff" style="width:70%">
 
   <!-- GALLERY -->
   <section id="gallery">
@@ -491,6 +291,63 @@ session_start();
 
   <hr id="after-fests" class="section-diff" style="width:70%">
 
+  <!-- QUESTIONS -->
+
+
+
+  <section style="text-align:center;">
+    <h1 class="events-head">FAQs</h1>
+    <div class="container">
+      <div class="accordion " id="accordionExample">
+        <div class="card">
+          <div style="background-color: #31326f;" class=" card-header" id="headingOne">
+            <h1 class="question mb-0">
+              <button style="color:white;" class="btn  btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <h2>What is a good place to stay in Jhansi?</h2>
+              </button>
+            </h1>
+          </div>
+
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div style="color: black; background-color:white;" class="card-body ">
+              <h4 class="answer">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</h4>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div style="background-color: #31326f;" class="card-header" id="headingTwo">
+            <h1 class="question mb-0">
+              <button style="color:white;" class="btn  btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <h2>What is a good place to stay in Jhansi?</h2>
+              </button>
+            </h1>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div style="color: black; background-color:white;" class="card-body">
+              <h4 class="answer">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</h4>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div style="background-color: #31326f;" class="card-header" id="headingThree">
+            <h1 class="question mb-0">
+              <button style="color:white;" class="btn  btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <h2>What is a good place to stay in Jhansi?</h2>
+              </button>
+            </h1>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div style="color: black; background-color:white;" class="card-body">
+              <h4 class="answer">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr id="after-questions" class="section-diff" style="width:70%">
+
   <!-- COLLEGE MAP -->
   <section id="map">
     <div class="container">
@@ -524,16 +381,16 @@ session_start();
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
             <h6 class="text-uppercase mb-4 font-weight-bold">Links</h6>
             <p>
-              <a class="footer-link" href="#after-intro">Notice</a>
+              <a class="footer-link" href="index.php#after-intro">Notice</a>
             </p>
             <p>
-              <a class="footer-link" href="#after-questions">Gallery</a>
+              <a class="footer-link" href="index.php#after-questions">Gallery</a>
             </p>
             <p>
-              <a class="footer-link" href="#after-gallery">Clubs and Cells</a>
+              <a class="footer-link" href="index.php#after-gallery">Clubs and Cells</a>
             </p>
             <p>
-              <a class="footer-link" href="#after-clubs">Events and Fests</a>
+              <a class="footer-link" href="index.php#after-clubs">Events and Fests</a>
             </p>
           </div>
           <!-- Grid column -->

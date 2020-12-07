@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   } else {
     session_start();
     include 'conn.php';
-    $result = mysqli_query($con, "select * from user_details where email = '$email' and password='$password'");
+    $result = mysqli_query($con, "select * from users where email = '$email' and password='$password'");
 
     if (mysqli_num_rows($result) > 0) {
       $row = mysqli_fetch_array($result);
@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       echo "<script>location.href='index.php'</script>";
     } else {
       echo " <div class='alert alert-danger'>Your Email or Password is incorrect</div>";
-      echo "";
     }
   }
 }
@@ -29,70 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Welcome to Campus Cauldron!</title>
   <!-- SPACE FOR FONTS -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Montserrat:wght@800&family=Raleway:ital,wght@1,300&family=Roboto+Slab:wght@600&family=Ubuntu:ital,wght@1,300&display=swap" rel="stylesheet">
-  <!-- FONT AWESOME LINKS -->
-  <script src="https://kit.fontawesome.com/959552e028.js" crossorigin="anonymous"></script>
-
-  <!-- STYLESHEETS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <link rel="stylesheet" href="CSS/styles.css">
-</head>
-
-
-<!-- FOR EVENTS AND FESTS -->
-<style>
-  .card .form-container button {
-    background-color: #31326f;
-    color: white;
-    border: none;
-    border-radius: 4px;
-  }
-
-  .card .form-container button:hover {
-    background-color: #414292;
-  }
-</style>
-
-<body style="background-image: url('images/img11.jpg');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;">
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark my-bg">
-    <a class="navbar-brand" href="index.php">Campus Cauldron</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="index.php">Home</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="index.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Links
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="index.php#after-intro">Notices</a>
-            <a class="dropdown-item" href="index.php#after-notice">FAQs</a>
-            <a class="dropdown-item" href="index.php#after-questions">Gallery</a>
-            <a class="dropdown-item" href="index.php#after-gallery">Clubs and Cells</a>
-            <a class="dropdown-item" href="index.php#after-clubs">Events and Fests</a>
-            <a class="dropdown-item" href="index.php#after-fests">College Map</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="ask.php">Ask</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact Us</a>
-        </li>
-      </ul>
+  <?php include 'include/navbar.php' ?>
     </div>
   </nav>
   <br><br>
@@ -220,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </footer>
     <!-- Footer -->
   </section>
-  // validation for empty field
+  <!--  validation for empty field -->
   <script>
     function validation() {
       var em = document.loginf.email.value;

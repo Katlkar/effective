@@ -5,5 +5,5 @@ if (!$con) {
   die();
 }
 
-mysqli_select_db($con, "users");
+$dbconfig=mysqli_select_db($con, "campus_cauldron");
 ?>
